@@ -8,7 +8,8 @@ const newFileEmbed = files => {
         .setAuthor("Bitrey C Compiler", "https://i.imgur.com/z8vLrsL.png")
         .setDescription(
             "Your file has been successfully compiled!" +
-                "\nYou can download both your code as a file and its compiled version."
+                "\nYou can find both your code and its compiled version inside the .zip file." +
+                "\nNote: it might get flagged as a virus because it's not signed, but it's safe."
         )
         .setThumbnail("https://i.imgur.com/7fdXs1R.png")
         .attachFiles(files)
