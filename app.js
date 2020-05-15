@@ -40,7 +40,7 @@ client.on(`message`, async message => {
             const code = await handleCompileCommand(msgObj, compileCommand);
 
             // Create a temp file to be compiled
-            const fileName = await createTempFile(
+            const filePath = await createTempFile(
                 code,
                 tempFolder,
                 tempFileSuffix
@@ -48,7 +48,7 @@ client.on(`message`, async message => {
 
             // Compile the code
             await compileCode(
-                fileName,
+                filePath,
                 tempFolder,
                 tempFileSuffix,
                 compiledFileSuffix
@@ -57,12 +57,14 @@ client.on(`message`, async message => {
             // Send the compiled file to the user
             await handleSuccess(
                 message,
-                fileName + compiledFileSuffix,
+                filePath,
+                tempFileSuffix,
+                compiledFileSuffix,
                 successLogsFileName
             );
 
             // Delete files after they've been uploaded
-            cleanFiles(fileName, tempFileSuffix, compiledFileSuffix);
+            cleanFiles(filePath, tempFileSuffix, compiledFileSuffix);
         } catch (err) {
             handleError(msgObj, err, errorLogsFileName);
         }
