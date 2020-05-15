@@ -47,12 +47,7 @@ client.on(`message`, async message => {
             );
 
             // Compile the code
-            await compileCode(
-                filePath,
-                tempFolder,
-                tempFileSuffix,
-                compiledFileSuffix
-            );
+            await compileCode(filePath, tempFileSuffix, compiledFileSuffix);
 
             // Send the compiled file to the user
             await handleSuccess(

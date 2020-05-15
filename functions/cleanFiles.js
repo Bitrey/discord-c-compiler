@@ -8,7 +8,7 @@ const cleanFiles = async (fileName, tempFileSuffix, compiledFileSuffix) => {
         fs.unlink(tempFilePath, err => {
             if (err) reject(err);
             fs.unlink(compiledFilePath, err => {
-                if (err) throw err;
+                if (err) reject(err);
                 resolve();
             });
         });

@@ -6,11 +6,10 @@ const newErrorEmbed = err => {
     return new Discord.MessageEmbed()
         .setColor("#ed473b")
         .setTitle("New error (click to report)")
-        .setAuthor("Bitrey C Compiler", "https://i.imgur.com/z8vLrsL.png")
         .setDescription(
             "An error occurred while compiling your C code." +
                 "\nPlease check below for more details." +
-                "\nIf you believe this is an error, please report it by clicking on the link above"
+                "\nIf you believe this is an error, please report it by clicking on the link above."
         )
         .setURL("https://github.com/Bitrey/discord-c-compiler/issues")
         .setThumbnail(
@@ -18,7 +17,7 @@ const newErrorEmbed = err => {
             "https://github.com/Bitrey/discord-c-compiler/issues"
         )
         .addFields({
-            name: "Error object",
+            name: "Error text",
             value: err.syntaxError
                 ? err.stderr
                 : util.inspect(err, { showHidden: false, depth: null })

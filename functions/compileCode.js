@@ -2,10 +2,10 @@ const { exec } = require("child_process");
 const path = require("path");
 const chalk = require("chalk");
 
-const compile = (fileName, tempFolder, tempFileSuffix, compiledFileSuffix) => {
+const compile = (fileName, tempFileSuffix, compiledFileSuffix) => {
     return new Promise((resolve, reject) => {
         exec(
-            `gcc ${fileName}${tempFileSuffix} -o ${fileName}${compiledFileSuffix}`,
+            `x86_64-w64-mingw32-gcc ${fileName}${tempFileSuffix} -o ${fileName}${compiledFileSuffix}`,
             (err, stdout, stderr) => {
                 if (err) {
                     // If stderr is not empty, we'll assume it's a syntax error
@@ -17,9 +17,9 @@ const compile = (fileName, tempFolder, tempFileSuffix, compiledFileSuffix) => {
                 } else {
                     const outputPath = path.join(
                         __dirname,
-                        tempFolder,
                         fileName + compiledFileSuffix
                     );
+                    console.log(outputPath);
                     resolve({ output: outputPath, stdout, stderr });
                 }
             }
