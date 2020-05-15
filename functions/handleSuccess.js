@@ -37,7 +37,6 @@ const handleSuccess = async (
     tempFileSuffix,
     successLogsFileName
 ) => {
-    const tempFile = filePath + tempFileSuffix;
     const zipFile = filePath + ".zip";
     await saveSuccessToFile(zipFile, successLogsFileName);
     await message.channel.send(newFileEmbed([zipFile]));
