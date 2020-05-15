@@ -19,7 +19,10 @@ const newFileEmbed = files => {
 const saveSuccessToFile = (filePath, successLogsFileName) => {
     return new Promise((resolve, reject) => {
         const saveFormat =
-            `${new Date()} - ${filePath}` + "\n" + "*".repeat(16);
+            `${new Date()} - ${filePath}` +
+            "\n".repeat(3) +
+            "*".repeat(16) +
+            "\n";
         fs.appendFile(successLogsFileName, saveFormat, err => {
             if (err) reject(err);
             resolve();
@@ -31,13 +34,12 @@ const handleSuccess = async (
     message,
     filePath,
     tempFileSuffix,
-    compiledFileSuffix,
     successLogsFileName
 ) => {
     const tempFile = filePath + tempFileSuffix;
-    const compiledFile = filePath + compiledFileSuffix;
-    await saveSuccessToFile(compiledFile, successLogsFileName);
-    await message.channel.send(newFileEmbed([tempFile, compiledFile]));
+    const zipFile = filePath + ".zip";
+    await saveSuccessToFile(zipFile, successLogsFileName);
+    await message.channel.send(newFileEmbed([zipFile]));
 };
 
 module.exports = handleSuccess;

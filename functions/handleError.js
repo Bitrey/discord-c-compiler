@@ -6,6 +6,7 @@ const newErrorEmbed = err => {
     return new Discord.MessageEmbed()
         .setColor("#ed473b")
         .setTitle("New error (click to report)")
+        .setAuthor("Bitrey C Compiler", "https://i.imgur.com/z8vLrsL.png")
         .setDescription(
             "An error occurred while compiling your C code." +
                 "\nPlease check below for more details." +
@@ -29,7 +30,7 @@ const newErrorEmbed = err => {
 const saveErrorToFile = (errStr, errorLogsFileName) => {
     fs.appendFile(
         errorLogsFileName,
-        errStr.toString() + "\n" + "*".repeat(16),
+        errStr.toString() + "\n".repeat(3) + "*".repeat(16) + "\n",
         err => {
             if (err) throw err;
         }

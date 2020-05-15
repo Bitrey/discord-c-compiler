@@ -4,8 +4,10 @@ const chalk = require("chalk");
 
 const compile = (fileName, tempFileSuffix, compiledFileSuffix) => {
     return new Promise((resolve, reject) => {
+        const input = fileName + tempFileSuffix;
+        const output = fileName + compiledFileSuffix;
         exec(
-            `x86_64-w64-mingw32-gcc ${fileName}${tempFileSuffix} -o ${fileName}${compiledFileSuffix}`,
+            `x86_64-w64-mingw32-gcc ${input} -o ${output} && zip -q ${fileName}.zip ${output} ${input}`,
             (err, stdout, stderr) => {
                 if (err) {
                     // If stderr is not empty, we'll assume it's a syntax error
@@ -15,12 +17,7 @@ const compile = (fileName, tempFileSuffix, compiledFileSuffix) => {
                     chalk.red("Error while executing gcc command!");
                     reject(err);
                 } else {
-                    const outputPath = path.join(
-                        __dirname,
-                        fileName + compiledFileSuffix
-                    );
-                    console.log(outputPath);
-                    resolve({ output: outputPath, stdout, stderr });
+                    resolve();
                 }
             }
         );

@@ -2,7 +2,6 @@
 require(`dotenv`).config();
 const Discord = require(`discord.js`);
 const client = new Discord.Client();
-// const path = require("path");
 
 // Functions
 const handleCompileCommand = require("./functions/handleCompileCommand");
@@ -11,6 +10,7 @@ const compileCode = require("./functions/compileCode");
 const cleanFiles = require("./functions/cleanFiles");
 const handleSuccess = require("./functions/handleSuccess");
 const handleError = require("./functions/handleError");
+const cleanFilesSchedule = require("./functions/cleanFilesSchedule");
 
 // Options
 const prefix = "!";
@@ -23,6 +23,9 @@ const testMode = true;
 const testServerName = "Bitrey Bot Testing";
 const successLogsFileName = "success.log";
 const errorLogsFileName = "error.log";
+
+// Clean files in temp folder every hour
+cleanFilesSchedule(tempFolder);
 
 client.on(`message`, async message => {
     // Save the message object in memory for async operations
@@ -54,7 +57,6 @@ client.on(`message`, async message => {
                 message,
                 filePath,
                 tempFileSuffix,
-                compiledFileSuffix,
                 successLogsFileName
             );
 
