@@ -9,6 +9,8 @@
   "author": "Bitrey",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^4.0.0",
+    "crypto-random-string": "^3.2.0",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
     "mongoose": "^5.9.14",

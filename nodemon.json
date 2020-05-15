@@ -1,0 +1,3 @@
+{
+    "ignore": ["debug/", "README", "tempFiles/", "*.log"]
+}
