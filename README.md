@@ -1,5 +1,13 @@
-# discord-c-compiler
+# C Compiler for Discord
 
-Se vuoi usarlo nel tuo server, crea un file `.env` e configurarlo come in `.env.example`
+### Install this to your Discord server
 
-Ricordati anche di installare tutte le dependencies con `npm install`
+Click here to install this bot on your Discord server: 
+
+### How to contribute
+
+Create a `.env` file and set it like the `.env.example` file
+
+Install all the dependencies with `npm install`
+
+You can modify many settings in the `app.js` file.
