@@ -9,7 +9,6 @@ const compile = (fileName, tempFolder, tempFileSuffix, compiledFileSuffix) => {
             (err, stdout, stderr) => {
                 if (err) {
                     // If stderr is not empty, we'll assume it's a syntax error
-                    // Let's put NOPRINT so it's not going to print anything on the console
                     if (stderr) {
                         reject({ syntaxError: true, stderr });
                     }

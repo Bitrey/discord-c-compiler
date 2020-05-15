@@ -5,24 +5,24 @@ const util = require("util");
 const newErrorEmbed = err => {
     return new Discord.MessageEmbed()
         .setColor("#ed473b")
-        .setTitle("Error")
+        .setTitle("New error (click to report)")
         .setAuthor("Bitrey C Compiler", "https://i.imgur.com/z8vLrsL.png")
         .setDescription(
             "An error occurred while compiling your C code." +
                 "\nPlease check below for more details." +
-                "\nIf you believe this is an error, please report it by clicking on the error icon"
+                "\nIf you believe this is an error, please report it by clicking on the link above"
         )
-        .setThumbnail("https://i.imgur.com/K6q6YDf.png")
-        .addFields(
-            {
-                name: "Error object",
-                value: util.inspect(err, { showHidden: false, depth: null })
-            },
-            {
-                name: "JSON stringified",
-                value: JSON.stringify(err, null, 4)
-            }
+        .setURL("https://github.com/Bitrey/discord-c-compiler/issues")
+        .setThumbnail(
+            "https://i.imgur.com/K6q6YDf.png",
+            "https://github.com/Bitrey/discord-c-compiler/issues"
         )
+        .addFields({
+            name: "Error object",
+            value: err.syntaxError
+                ? err.stderr
+                : util.inspect(err, { showHidden: false, depth: null })
+        })
         .setTimestamp()
         .setFooter("Good luck fixing that!", "https://i.imgur.com/7DWKPzq.png");
 };
@@ -40,7 +40,7 @@ const saveErrorToFile = (errStr, errorLogsFileName) => {
 const handleError = (msgObj, err, errorLogsFileName) => {
     // Check if error is JSON (gcc errors are JSON stringified)
     if (err.syntaxError) {
-        msgObj.channel.send(newErrorEmbed(util.format(err.stderr)));
+        msgObj.channel.send(newErrorEmbed(err));
     } else {
         saveErrorToFile(err, errorLogsFileName);
         msgObj.channel.send(newErrorEmbed(err));
