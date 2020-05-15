@@ -1,0 +1,17 @@
+{
+  "name": "c-compiler-discord",
+  "version": "1.0.0",
+  "description": "A C compiler for Discord servers",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bitrey",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0",
+    "mongoose": "^5.9.14",
+    "nodemon": "^2.0.4"
+  }
+}
